@@ -85,8 +85,8 @@ class ImageTestClass(TestCase):
         Location.objects.all().delete()
 
     # Testing  instance
-    # def test_instance(self):
-    #     self.assertTrue(isinstance(self.image,Image))
+    def test_instance(self):
+        self.assertTrue(isinstance(self.image,Image))
 
     # def save_image(self):
     #     self.save()
