@@ -1,3 +1,4 @@
+{% extends 'base.html'%}
 {%load static%}
 {%block content%}
 
@@ -9,9 +10,9 @@
              {{image.description }}
              <br>
              Location: {{ image.location }}
-        </div>
-    
-    <a class="btn btn-primary" style="background-color: #da2e98" href="/mygallery"> Back to Gallery</a>
+         <br>
+<a class="btn btn-primary" style="background-color: #da2e98" href="/"> Back to Home</a>
     </div>
+   
     {%endblock%}
 </div>
