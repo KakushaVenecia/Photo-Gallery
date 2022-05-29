@@ -1,0 +1,54 @@
+{% load bootstrap4 %}
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+     {% if title %}
+     <title>My Gallery - {{title}}</title>
+     {% else %}
+     <title> Gallery </title>
+     {% endif %}
+
+     {% block styles %}
+     {% bootstrap_css %}
+     {% endblock %}
+    <!-- CSS only -->
+    <style>
+        .image-thumbail {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .list-group-item a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+<br>
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-4">
+            <a href="{% url 'mygallery_details' image.pk %}" data-fancybox data-caption="{{image.name}}">
+                <img src="{{image.photo.url}}" style="width:300px; height:200px" alt="" />
+                {{image.name}}
+            </a>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+{% endblock %}
+</body>
+
+</html>
