@@ -10,7 +10,7 @@ urlpatterns=[
     url('^mygallery/$', views.mygallery, name='mygallery'),
     url('^mygallery/(\d+)/', views.mygallery_details, name='mygallery_details'),
     url(r'^search/', views.search_results, name='search_results'),
-    # url(r'^category/(\d+)', views.category,name = 'category')
+    url(r'^location/(\d+)', views.location,name = 'location')
 
 ]
 if settings.DEBUG:

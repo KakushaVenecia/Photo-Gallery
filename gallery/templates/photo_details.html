@@ -11,6 +11,22 @@
              <br>
              Location: {{ image.location }}
          <br>
+<input type="text" value="{% url 'mygallery_details' image.pk %}" id='image_url'><button onclick="Link()">Copy
+    Text</button>
+</div>
+</div>
+<script>
+    function Link() {
+        var copyText = document.getElementById('image_url.value')
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        navigator.clipboard.writeText(copyText.value);
+        alert("Copied the text: " + copyText.value);
+    };
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js">
+</script>
+
 <a class="btn btn-primary" style="background-color: #da2e98" href="/"> Back to Home</a>
     </div>
    

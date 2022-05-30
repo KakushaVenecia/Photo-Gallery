@@ -1,5 +1,5 @@
-from django.http  import Http404 , HttpResponse
-from django.shortcuts import render , redirect
+from django.http  import Http404 
+from django.shortcuts import render 
 from gallery.models import Image, Location, Category
 
 
@@ -9,12 +9,13 @@ DoesNotExist = Http404()
 def index(request):
     images =Image.objects.all()
     category = Category.objects.all()
-    location = Location.objects.all()
-    return render(request, 'index.html' ,{"images":images , "category":category, "location":location} ) 
+    locations = Location.objects.all()
+    return render(request, 'index.html' ,{"images":images , "category":category, "locations":locations} ) 
 
 def mygallery(request):
     images =Image.objects.all()
-    return render(request, 'photo.html', {"images":images})
+    locations = Location.objects.all()
+    return render(request, 'photo.html', {"images":images,  "locations":locations})
 
 def mygallery_details(request, pk):
     image = Image.objects.get(pk=pk)
@@ -35,9 +36,13 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search_results.html',{"message":message})
 
-# def category(request, category_id):
-#     try:
-#         category = Image.objects.get(id = category_id)
-#     except DoesNotExist:
-#         raise Http404()
-#     return render(request, "search.html",{"category":category})
+def location(request,pk):
+    try:
+        location = Location.objects.get(id =pk)
+        images = Image.objects.filter(location=location)
+    except DoesNotExist:
+        raise Http404()
+    return render(request, "search.html",{"location":location , "images":images })
+
+
+

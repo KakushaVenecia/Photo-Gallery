@@ -18,17 +18,12 @@
     {% endblock %}
 </head>
 <body>
-    
-
-
-<!-- CSS only -->
-
- 
-    <nav class="navbar navbar-inverse" style="background-color:rgb(15, 180, 65)">
+    <nav class="navbar navbar-inverse" style="background-color:rgb(235, 115, 17)" >
      <div class="container-fluid">
          <div class="navbar-header">
-             <a class="navbar-brand"> Browse Gallery </a>
+             <a class="navbar-brand" href="/" style="font-weight:bold;"> Location</a>
          </div>
+         
          <!-- <a class="navbar-brand" href="{% url 'index' %}">My Gallery</a> -->
          <div class="col-sm-4 col-md-4 navbar-right">
              <form class="navbar-form" role="search" action="{% url 'search_results' %}">
@@ -47,26 +42,23 @@
  </nav>
 
 
-   
-        <h1 style="text-align: center; text-decoration:dotted;"> Gallery </h1> 
-        <div class="row tm-mb-90 tm-gallery">
+   <div class="container-fluid">
+        <h1 style="text-align: center; text-decoration:dotted;">{{location.name}}</h1>
+        <div class="row">  
             {% for image in images %}
+            <div class="col-md-4">
+                <a href="{% url 'mygallery_details' image.pk %}" data-fancybox data-caption="{{image.name}}">
+                <img src="{{image.photo.url}}" style="width:300px; height:200px" alt="" /></a>
+                <a href="{% url 'mygallery_details' image.pk %}" class="btn"
+                    style="background-color: #F4E7EF; align-content:flex-end; margin-bottom: 5px;">
+                    Expand
+                </a>
+            </div>
+            {%endfor%}
+            </div>
             <br>
-            <a href="{% url 'mygallery_details' image.pk %}" data-fancybox data-caption="{{image.name}}">
-                <img src="{{image.photo.url}}" style="width:300px;" alt="" />
-            </a>
-            <!-- <img class="card-img-top" style="width:400px; float: inline-start;" src="{{image.photo.url}}">
-            <br>
-            {{image.name}}
-            <br> -->
-            <a href="{% url 'mygallery_details' image.pk %}" class="btn"
-                style="background-color: #F4E7EF; align-content:flex-end; margin-bottom: 5px;">
-                Expand
-            </a>
-        </div>
-        {%endfor%}
     </div>
-</div>
+        
 </body>
 
 </html>
